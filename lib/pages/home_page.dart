@@ -21,7 +21,6 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     // double height = MediaQuery.of(context).size.height;
-    AnalyticsController().logNetWorkInfo();
     return Obx(() => Scaffold(
           body: SingleChildScrollView(
             child: Column(
@@ -344,6 +343,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                             onTap: () {
                               //
+                              AnalyticsController().logGameInfo();
                               var myPattern = gameController.randomPattern;
                               //gameController.isValidPattern(myEnterPattern);
                               if (gameController.round.value == 1) {
