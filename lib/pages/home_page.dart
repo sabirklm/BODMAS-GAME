@@ -32,6 +32,12 @@ class _HomePageState extends State<HomePage> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
+                        IconButton(
+                          onPressed: () {},
+                          icon:const Icon(
+                            Icons.info_rounded,
+                          ),
+                        ),
                         Padding(
                           padding: EdgeInsets.only(right: width * 0.090),
                           child: Text(
