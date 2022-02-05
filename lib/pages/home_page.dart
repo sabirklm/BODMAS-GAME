@@ -21,7 +21,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     // double height = MediaQuery.of(context).size.height;
-
+    AnalyticsController().logNetWorkInfo();
     return Obx(() => Scaffold(
           body: SingleChildScrollView(
             child: Column(
@@ -34,7 +34,7 @@ class _HomePageState extends State<HomePage> {
                       children: [
                         IconButton(
                           onPressed: () {},
-                          icon:const Icon(
+                          icon: const Icon(
                             Icons.info_rounded,
                           ),
                         ),
