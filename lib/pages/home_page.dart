@@ -21,7 +21,6 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     // double height = MediaQuery.of(context).size.height;
-
     return Obx(() => Scaffold(
           body: SingleChildScrollView(
             child: Column(
@@ -32,6 +31,12 @@ class _HomePageState extends State<HomePage> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
+                        IconButton(
+                          onPressed: () {},
+                          icon: const Icon(
+                            Icons.info_rounded,
+                          ),
+                        ),
                         Padding(
                           padding: EdgeInsets.only(right: width * 0.090),
                           child: Text(
@@ -338,6 +343,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                             onTap: () {
                               //
+                              AnalyticsController().logGameInfo();
                               var myPattern = gameController.randomPattern;
                               //gameController.isValidPattern(myEnterPattern);
                               if (gameController.round.value == 1) {
