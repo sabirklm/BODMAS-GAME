@@ -1,3 +1,6 @@
+import 'package:mas_404/controllers/utills.dart';
+import 'package:math_expressions/math_expressions.dart';
+
 import '/widgets/widgets.dart';
 import '/controllers/controllers.dart';
 import 'package:confetti/confetti.dart';
@@ -21,6 +24,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     // double height = MediaQuery.of(context).size.height;
+
     return Obx(() => Scaffold(
           body: SingleChildScrollView(
             child: Column(
@@ -40,7 +44,7 @@ class _HomePageState extends State<HomePage> {
                         Padding(
                           padding: EdgeInsets.only(right: width * 0.090),
                           child: Text(
-                            "B O D M A S",
+                            "B O D M A S ",
                             style:
                                 Theme.of(context).textTheme.headline5!.copyWith(
                                       fontWeight: FontWeight.bold,
@@ -96,6 +100,11 @@ class _HomePageState extends State<HomePage> {
                       char: gameController.roun1UserPattern[4] ?? " ",
                       fillColor: gameController.round1Color[4],
                     ),
+                    DisplayedChar(
+                      char:
+                          "${convertExpression(gameController.randomPattern)}",
+                      fillColor: const Color(0xff4E4E4E),
+                    ),
                   ],
                 ),
                 //SECOND ROW
@@ -123,6 +132,11 @@ class _HomePageState extends State<HomePage> {
                       char: gameController.roun2UserPattern[4] ?? " ",
                       fillColor: gameController.round2Color[4],
                     ),
+                    DisplayedChar(
+                      char:
+                          "${convertExpression(gameController.randomPattern)}",
+                      fillColor: const Color(0xff4E4E4E),
+                    ),
                   ],
                 ),
                 Row(
@@ -147,6 +161,11 @@ class _HomePageState extends State<HomePage> {
                     DisplayedChar(
                       char: gameController.roun3UserPattern[4] ?? " ",
                       fillColor: gameController.round3Color[4],
+                    ),
+                    DisplayedChar(
+                      char:
+                          "${convertExpression(gameController.randomPattern)}",
+                      fillColor: const Color(0xff4E4E4E),
                     ),
                   ],
                 ),
