@@ -43,9 +43,12 @@ class RulesPage extends StatelessWidget {
                   ),
                 ),
               ),
-              Text(
-                "You will be given a result  equation of an equation. The equation is hidden and you have to guess the equation in 3 steps",
-                style: Theme.of(context).textTheme.headline6,
+              Align(
+                alignment: Alignment.topLeft,
+                child: Text(
+                  "You will be given a result  equation of an equation. The equation is hidden and you have to guess the equation in 3 steps",
+                  style: Theme.of(context).textTheme.headline6,
+                ),
               ),
               Align(
                 alignment: Alignment.topLeft,
@@ -58,9 +61,12 @@ class RulesPage extends StatelessWidget {
                   ),
                 ),
               ),
-              Text(
-                "For example you are given a result. Now you have to start guessing the eqation from step1 to step3. Lets the result is 12",
-                style: Theme.of(context).textTheme.headline6,
+              Align(
+                alignment: Alignment.topLeft,
+                child: Text(
+                  "For example you are given a result. Now you have to start guessing the eqation from step1 to step3. Lets the result is 12",
+                  style: Theme.of(context).textTheme.headline6,
+                ),
               ),
               Align(
                 alignment: Alignment.topLeft,
@@ -97,13 +103,19 @@ class RulesPage extends StatelessWidget {
                   ),
                 ],
               ),
-              Text(
-                "According to the color indication x and multiply is in correct position as they are green but 6 is part of the equation but not in the correct position so it is indicated as orange color but those are not the part of the equation as 2 here colored as grey.",
-                style: Theme.of(context).textTheme.headline6,
+              Align(
+                alignment: Alignment.topLeft,
+                child: Text(
+                  "According to the color indication x and multiply is in correct position as they are green but 6 is part of the equation but not in the correct position so it is indicated as orange color but those are not the part of the equation as 2 here colored as grey.",
+                  style: Theme.of(context).textTheme.headline6,
+                ),
               ),
-              Text(
-                "In the next steps you will get the same indication and you have to guss the eqation correctly",
-                style: Theme.of(context).textTheme.headline6,
+              Align(
+                alignment: Alignment.topLeft,
+                child: Text(
+                  "In the next steps you will get the same indication and you have to guss the eqation correctly",
+                  style: Theme.of(context).textTheme.headline6,
+                ),
               ),
               Align(
                 alignment: Alignment.topLeft,

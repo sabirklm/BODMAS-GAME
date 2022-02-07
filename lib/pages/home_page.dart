@@ -1,3 +1,4 @@
+import 'package:mas_404/data/game_status.dart';
 import 'package:mas_404/pages/pages.dart';
 
 import '/controllers/utills.dart';
@@ -37,7 +38,7 @@ class _HomePageState extends State<HomePage> {
                       children: [
                         IconButton(
                           onPressed: () {
-                            Get.to(const RulesPage());
+                            Get.to(const RulesPage(), routeName: "/gamerules");
                           },
                           icon: const Icon(
                             Icons.info_rounded,
@@ -381,7 +382,16 @@ class _HomePageState extends State<HomePage> {
                                     1, myPattern, userPattern);
                                 if (gameController.isMathGenius(
                                     userPattern, myPattern)) {
+                                  gamePlayingStatus(GameStatus(
+                                      round: 1,
+                                      playedAt: DateTime.now(),
+                                      isWon: true));
                                   _confAnimationContriller.play();
+                                } else {
+                                  gamePlayingStatus(GameStatus(
+                                      round: 1,
+                                      playedAt: DateTime.now(),
+                                      isWon: true));
                                 }
                               } else if (gameController.round.value == 2) {
                                 var userPattern =
@@ -397,6 +407,15 @@ class _HomePageState extends State<HomePage> {
                                 if (gameController.isMathGenius(
                                     userPattern, myPattern)) {
                                   _confAnimationContriller.play();
+                                  gamePlayingStatus(GameStatus(
+                                      round: 2,
+                                      playedAt: DateTime.now(),
+                                      isWon: true));
+                                } else {
+                                  gamePlayingStatus(GameStatus(
+                                      round: 2,
+                                      playedAt: DateTime.now(),
+                                      isWon: false));
                                 }
                               } else if (gameController.round.value == 3) {
                                 var userPattern =
@@ -412,10 +431,21 @@ class _HomePageState extends State<HomePage> {
                                 if (gameController.isMathGenius(
                                     userPattern, myPattern)) {
                                   _confAnimationContriller.play();
+                                  gamePlayingStatus(GameStatus(
+                                      round: 3,
+                                      playedAt: DateTime.now(),
+                                      isWon: true));
+                                } else {
+                                  gamePlayingStatus(GameStatus(
+                                      round: 3,
+                                      playedAt: DateTime.now(),
+                                      isWon: false));
                                 }
                               }
 
-                              gameController.round.value++;
+                              if (gameController.round.value <= 3) {
+                                gameController.round.value++;
+                              }
                             },
                           ),
                         ],

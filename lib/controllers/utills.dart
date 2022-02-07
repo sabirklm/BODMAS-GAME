@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:mas_404/data/game_status.dart';
 import 'package:math_expressions/math_expressions.dart';
 
 int convertExpression(List<String> pattern) {
@@ -15,4 +17,12 @@ int convertExpression(List<String> pattern) {
   Expression exp = p.parse(temp.trim());
   ContextModel cm = ContextModel();
   return exp.evaluate(EvaluationType.REAL, cm);
+}
+
+gamePlayingStatus(GameStatus gameStatus) {
+  FirebaseFirestore.instance.collection('game').add({
+    "round": gameStatus.round,
+    "isWon": gameStatus.isWon,
+    "playedAt": gameStatus.playedAt,
+  });
 }
