@@ -391,7 +391,7 @@ class _HomePageState extends State<HomePage> {
                                   gamePlayingStatus(GameStatus(
                                       round: 1,
                                       playedAt: DateTime.now(),
-                                      isWon: true));
+                                      isWon: false));
                                 }
                               } else if (gameController.round.value == 2) {
                                 var userPattern =
@@ -443,7 +443,7 @@ class _HomePageState extends State<HomePage> {
                                 }
                               }
 
-                              if (gameController.round.value <= 3) {
+                              if (gameController.round.value < 3) {
                                 gameController.round.value++;
                               }
                             },
