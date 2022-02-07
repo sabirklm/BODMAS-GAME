@@ -7,6 +7,7 @@ class GameController extends GetxController {
   var isGameOwn = false.obs;
   var isDarkTheme = false.obs;
   var randomPattern = <String>["5", "×", "2", "+", "9"].obs;
+  var result = 0.obs;
   var userPattern = <String?>[null, null, null, null, null].obs;
   var roun1UserPattern = <String?>[null, null, null, null, null].obs;
   var roun2UserPattern = <String?>[null, null, null, null, null].obs;
@@ -42,18 +43,18 @@ class GameController extends GetxController {
   ].obs;
   var round = 1.obs;
 
-  int isPartOfPattern(List<String> pattern, List<String?> characters) {
+  int isPartOfPattern(List<String> pattern, List<String?> myStrings) {
     for (int i = 0; i < pattern.length; i++) {
-      if (characters[i] == null) return -1;
-      if (pattern[i] == characters[i]) {
+      if (myStrings[i] == null) return -1;
+      if (pattern[i] == myStrings[i]) {
         return i;
       }
     }
     return -1;
   }
 
-  bool isCorrectPosition(String char1, String char2) {
-    return char1 == char2;
+  bool isCorrectPosition(String myString1, String myString2) {
+    return myString1 == myString2;
   }
 
   Color selectColor(bool isCorrectPosition, bool isPartOfPattern) {
@@ -62,32 +63,32 @@ class GameController extends GetxController {
     return Colors.red;
   }
 
-  enterNumber(int currentRoun, String char) {
-    if (currentRoun == 1) {
+  enterNumber(int currentRound, String userInput) {
+    if (currentRound == 1) {
       for (int i = 0; i < roun1UserPattern.length; i++) {
         if (roun1UserPattern[i] == null) {
-          roun1UserPattern[i] = char;
+          roun1UserPattern[i] = userInput;
           break;
         }
       }
-    } else if (currentRoun == 2) {
+    } else if (currentRound == 2) {
       for (int i = 0; i < roun2UserPattern.length; i++) {
         if (roun2UserPattern[i] == null) {
-          roun2UserPattern[i] = char;
+          roun2UserPattern[i] = userInput;
           break;
         }
       }
-    } else if (currentRoun == 3) {
+    } else if (currentRound == 3) {
       for (int i = 0; i < roun3UserPattern.length; i++) {
         if (roun3UserPattern[i] == null) {
-          roun3UserPattern[i] = char;
+          roun3UserPattern[i] = userInput;
           break;
         }
       }
-    } else if (currentRoun == 4) {
+    } else if (currentRound == 4) {
       for (int i = 0; i < roun4UserPattern.length; i++) {
         if (roun4UserPattern[i] == null) {
-          roun4UserPattern[i] = char;
+          roun4UserPattern[i] = userInput;
           break;
         }
       }
@@ -241,4 +242,6 @@ class GameController extends GetxController {
                         2. !equation 
                         3. equation wrong position
  */
+
+
 
