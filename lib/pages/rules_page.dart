@@ -9,7 +9,7 @@ class RulesPage extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
     // double height = MediaQuery.of(context).size.height;
     return Scaffold(
-      backgroundColor: Colors.grey.shade200,
+      backgroundColor: Theme.of(context).backgroundColor,
       body: SingleChildScrollView(
         child: Container(
           margin: EdgeInsets.fromLTRB(
@@ -18,7 +18,6 @@ class RulesPage extends StatelessWidget {
             width * 0.01,
             width * 0.01,
           ),
-          color: Colors.white,
           padding: const EdgeInsets.all(16),
           child: Column(
             children: [
