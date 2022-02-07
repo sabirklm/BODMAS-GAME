@@ -1,6 +1,6 @@
-import 'package:mas_404/controllers/utills.dart';
-import 'package:math_expressions/math_expressions.dart';
+import 'package:mas_404/pages/pages.dart';
 
+import '/controllers/utills.dart';
 import '/widgets/widgets.dart';
 import '/controllers/controllers.dart';
 import 'package:confetti/confetti.dart';
@@ -36,7 +36,9 @@ class _HomePageState extends State<HomePage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Get.to(const RulesPage());
+                          },
                           icon: const Icon(
                             Icons.info_rounded,
                           ),
@@ -44,7 +46,7 @@ class _HomePageState extends State<HomePage> {
                         Padding(
                           padding: EdgeInsets.only(right: width * 0.090),
                           child: Text(
-                            "B O D M A S ",
+                            "B O D M A S ${convertExpression(gameController.randomPattern)}",
                             style:
                                 Theme.of(context).textTheme.headline5!.copyWith(
                                       fontWeight: FontWeight.bold,
