@@ -24,7 +24,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-    // double height = MediaQuery.of(context).size.height;
+    double height = MediaQuery.of(context).size.height;
 
     return Obx(() => Scaffold(
           body: SingleChildScrollView(
@@ -45,13 +45,13 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.only(right: width * 0.090),
+                          padding: EdgeInsets.only(right: width * 0.080),
                           child: Text(
-                            "B O D M A S ${convertExpression(gameController.randomPattern)}",
+                            "B O D M A S",
                             style:
                                 Theme.of(context).textTheme.headline5!.copyWith(
                                       fontWeight: FontWeight.bold,
-                                      letterSpacing: 5,
+                                      letterSpacing: 4,
                                     ),
                           ),
                         ),
@@ -172,6 +172,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ],
                 ),
+
                 if (gameController.isGameOwn.value)
                   ConfettiWidget(
                     confettiController: _confAnimationContriller,
@@ -179,6 +180,44 @@ class _HomePageState extends State<HomePage> {
                     blastDirectionality: BlastDirectionality.explosive,
                     numberOfParticles: 100,
                     blastDirection: 0.2,
+                  ),
+                if (gameController.round.value > 3 && !gameController.isGameOwn.value
+                    )
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Oops!! Try again",
+                        style: Theme.of(context).textTheme.headline6,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          DisplayedChar(
+                            char: gameController.randomPattern[0],
+                            fillColor: Colors.green,
+                          ),
+                          DisplayedChar(
+                            char: gameController.randomPattern[1],
+                            fillColor: Colors.green,
+                          ),
+                          DisplayedChar(
+                            char: gameController.randomPattern[2],
+                            fillColor: Colors.green,
+                          ),
+                          DisplayedChar(
+                            char: gameController.randomPattern[3],
+                            fillColor: Colors.green,
+                          ),
+                          DisplayedChar(
+                            char: gameController.randomPattern[4],
+                            fillColor: Colors.green,
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
 
                 Container(
@@ -440,10 +479,14 @@ class _HomePageState extends State<HomePage> {
                                       round: 3,
                                       playedAt: DateTime.now(),
                                       isWon: false));
+                                  String originalPattern = "";
+                                  for (int i = 0; i < myPattern.length; i++) {
+                                    originalPattern += myPattern[i];
+                                  }
                                 }
                               }
 
-                              if (gameController.round.value < 3) {
+                              if (gameController.round.value <= 3) {
                                 gameController.round.value++;
                               }
                             },
@@ -459,3 +502,63 @@ class _HomePageState extends State<HomePage> {
         ));
   }
 }
+
+
+/*
+
+
+
+
+  Get.dialog(
+                                    Container(
+                                      padding: const EdgeInsets.all(32),
+                                      margin: EdgeInsets.only(
+                                          left: width * 0.3,
+                                          right: width * 0.3,
+                                          top: height * 0.2,
+                                          bottom: height*0.1),
+                                      color: Theme.of(context).backgroundColor,
+                                      child: Column(
+                                        children: [
+                                          Align(
+                                            alignment: Alignment.topRight,
+                                            child: Material(
+                                              child: IconButton(
+                                                onPressed: () {
+                                                  Navigator.pop(context);
+                                                },
+                                                icon: const Icon(
+                                                  Icons.close,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Text(
+                                            "Oops!!\n Try again",
+                                            textAlign: TextAlign.center,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headline5,
+                                          ),
+                                          Text(
+                                            originalPattern,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headline6,
+                                          ),
+                                          ElevatedButton(
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                            },
+                                            style: ElevatedButton.styleFrom(
+                                                padding:
+                                                    const EdgeInsets.all(16)),
+                                            child: const Text(
+                                              "Try Again",
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  );
+ */
