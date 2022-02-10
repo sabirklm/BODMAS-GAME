@@ -1,5 +1,5 @@
-import 'package:mas_404/data/game_status.dart';
-import 'package:mas_404/pages/pages.dart';
+import '/data/game_status.dart';
+import '/pages/pages.dart';
 
 import '/controllers/utills.dart';
 import '/widgets/widgets.dart';
@@ -181,8 +181,8 @@ class _HomePageState extends State<HomePage> {
                     numberOfParticles: 100,
                     blastDirection: 0.2,
                   ),
-                if (gameController.round.value > 3 && !gameController.isGameOwn.value
-                    )
+                if (gameController.round.value > 3 &&
+                    !gameController.isGameOwn.value)
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,

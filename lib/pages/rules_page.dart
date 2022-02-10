@@ -46,7 +46,7 @@ class RulesPage extends StatelessWidget {
               Align(
                 alignment: Alignment.topLeft,
                 child: Text(
-                  "You will be given a result  equation of an equation. The equation is hidden and you have to guess the equation in 3 steps",
+                  "You will be given a result of an equation. The equation is hidden and you have to guess the equation in 3 steps",
                   style: Theme.of(context).textTheme.headline6,
                 ),
               ),
