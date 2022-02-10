@@ -34,6 +34,42 @@ class _LatexPreviewPageState extends State<LatexPreviewPage> {
                   'Preview Math equations',
                   style: Theme.of(context).textTheme.headline6,
                 ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    InkWell(
+                      onTap: () {
+                        _latexController.value= const TextEditingValue(
+                          text: r"""\(x{\degree}\)""",
+                          
+                        );
+                        setState(() {});
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.all(8),
+                        margin: const EdgeInsets.all(8),
+                        color: Theme.of(context).backgroundColor,
+                        child: const Text("x°"),
+                      ),
+                    ),
+                    //Angle
+                    InkWell(
+                      onTap: () {
+                        _latexController.value = const TextEditingValue(
+                          text: r"""\(x^{2}\)""",
+                          
+                        );
+                        setState(() {});
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.all(8),
+                        margin: const EdgeInsets.all(8),
+                        color: Theme.of(context).backgroundColor,
+                        child: const Text("x²"),
+                      ),
+                    ),
+                  ],
+                ),
                 TextField(
                   label: 'Enter latex',
                   controller: _latexController,
