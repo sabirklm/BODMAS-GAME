@@ -17,7 +17,7 @@ class _LatexPreviewPageState extends State<LatexPreviewPage> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    
+
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -26,11 +26,11 @@ class _LatexPreviewPageState extends State<LatexPreviewPage> {
             padding: const EdgeInsets.all(8),
             child: Column(
               children: [
-                 Text(
+                Text(
                   'Welcome to Cryptic',
                   style: Theme.of(context).textTheme.headline5,
                 ),
-                 Text(
+                Text(
                   'Preview Math equations',
                   style: Theme.of(context).textTheme.headline6,
                 ),
@@ -115,8 +115,10 @@ class TextField extends StatelessWidget {
           TextFormField(
             controller: controller,
             onChanged: onChanged,
-            maxLines: 2,
-            decoration: const InputDecoration(),
+            maxLines: 4,
+            decoration: const InputDecoration(
+              border: OutlineInputBorder(),
+            ),
           ),
         ],
       ),
