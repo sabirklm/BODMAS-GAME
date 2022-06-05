@@ -1,163 +1,115 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_tex/flutter_tex.dart';
+import 'package:get/get.dart';
 
-class LatexPreviewPage extends StatefulWidget {
-  const LatexPreviewPage({
-    Key? key,
-  }) : super(key: key);
+import '../widgets/widgets.dart';
 
-  @override
-  _LatexPreviewPageState createState() => _LatexPreviewPageState();
-}
-
-class _LatexPreviewPageState extends State<LatexPreviewPage> {
-  final _latexController = TextEditingController();
-  String latex = "";
+class LatexPreviewPage extends StatelessWidget {
+  const LatexPreviewPage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-
+    var theme = Theme.of(context);
+    var lpc = Get.put(LatexPreviewController());
     return Scaffold(
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Container(
-            color: Colors.white,
-            padding: const EdgeInsets.all(8),
-            child: Column(
-              children: [
-                Text(
-                  'Welcome to Cryptic',
-                  style: Theme.of(context).textTheme.headline5,
-                ),
-                Text(
-                  'Preview Math equations',
-                  style: Theme.of(context).textTheme.headline6,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+        child: Obx(() {
+          return ListView(
+            children: [
+              Container(
+                color: Colors.white,
+                padding: const EdgeInsets.all(8),
+                child: Column(
                   children: [
-                    InkWell(
-                      onTap: () {
-                        _latexController.value= const TextEditingValue(
-                          text: r"""\(x{\degree}\)""",
-                          
-                        );
-                        setState(() {});
-                      },
-                      child: Container(
-                        padding: const EdgeInsets.all(8),
-                        margin: const EdgeInsets.all(8),
-                        color: Theme.of(context).backgroundColor,
-                        child: const Text("x°"),
-                      ),
+                    Text(
+                      'Welcome to Cryptic',
+                      style: Theme.of(context).textTheme.headline5,
                     ),
-                    //Angle
-                    InkWell(
-                      onTap: () {
-                        _latexController.value = const TextEditingValue(
-                          text: r"""\(x^{2}\)""",
-                          
-                        );
-                        setState(() {});
-                      },
-                      child: Container(
-                        padding: const EdgeInsets.all(8),
-                        margin: const EdgeInsets.all(8),
-                        color: Theme.of(context).backgroundColor,
-                        child: const Text("x²"),
-                      ),
+                    Text(
+                      'Preview Math equations',
+                      style: Theme.of(context).textTheme.headline6,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            lpc._latexController.value = const TextEditingValue(
+                              text: r"""\(x{\degree}\)""",
+                            );
+                            lpc.updateUI();
+                          },
+                          child: Container(
+                            padding: const EdgeInsets.all(16),
+                            margin: const EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              color: Colors.primaries[
+                                  Random().nextInt(Colors.primaries.length)],
+                            ),
+                            child: Text(
+                              "x°",
+                              style: theme.textTheme.headline5,
+                            ),
+                          ),
+                        ),
+                        //Angle
+                        InkWell(
+                          onTap: () {
+                            lpc.updateUI();
+                            lpc._latexController.value = const TextEditingValue(
+                              text: r"""\(x^{2}\)""",
+                            );
+                          },
+                          child: Container(
+                            padding: const EdgeInsets.all(16),
+                            margin: const EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              color: Colors.primaries[
+                                  Random().nextInt(Colors.primaries.length)],
+                            ),
+                            child: Text(
+                              "x²",
+                              style: theme.textTheme.headline5,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        EditTextField(
+                          label: 'Enter latex',
+                          controller: lpc._latexController,
+                          onChanged: (enteringValue) {
+                            lpc.updateUI();
+                          },
+                        ),
+                        if (lpc.ui.value >= 1)
+                          LateXPreviewWidget(
+                            latex: lpc._latexController.text,
+                          )
+                      ],
                     ),
                   ],
                 ),
-                TextField(
-                  label: 'Enter latex',
-                  controller: _latexController,
-                  onChanged: (enteringValue) {
-                    setState(
-                      () {},
-                    );
-                  },
-                ),
-                LateX(
-                  latex: _latexController.text,
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class LateX extends StatelessWidget {
-  final String latex;
-  const LateX({
-    Key? key,
-    required this.latex,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
-    return SizedBox(
-      width: width,
-      height: height * 0.3,
-      child: TeXView(
-        child: TeXViewColumn(
-          children: [
-            TeXViewDocument(
-              latex,
-              style: TeXViewStyle(
-                padding: TeXViewPadding.all((width * 0.001).toInt()),
-                width: width.toInt(),
-                textAlign: TeXViewTextAlign.Center,
               ),
-            ),
-          ],
-        ),
+            ],
+          );
+        }),
       ),
     );
   }
 }
 
-class TextField extends StatelessWidget {
-  final String label;
-  final TextEditingController? controller;
-  final void Function(String)? onChanged;
-  const TextField({
-    Key? key,
-    required this.label,
-    this.controller,
-    this.onChanged,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
-    return Container(
-      width: width,
-      padding: EdgeInsets.symmetric(horizontal: width * 0.1),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            label,
-          ),
-          TextFormField(
-            controller: controller,
-            onChanged: onChanged,
-            maxLines: 4,
-            decoration: const InputDecoration(
-              border: OutlineInputBorder(),
-            ),
-          ),
-        ],
-      ),
-    );
+class LatexPreviewController extends GetxController {
+  final _latexController = TextEditingController();
+  var latex = "".obs;
+  var ui = 1.obs;
+  updateUI() {
+    ui.value = Random().nextInt(100);
   }
 }
